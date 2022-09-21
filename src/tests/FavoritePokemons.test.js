@@ -12,8 +12,8 @@ describe('Requisite 3 testing <FavoritePokemons> Component', () => {
   test(`Message "No favorite pokemon found" correctly 
 renders when user has no favorite pokemons `, () => {
     const { getByRole, getByText } = renderFavPokemon();
-    const testTarget = getByRole('heading', { name: 'Favorite pokémons', level: 2 });
-    const testTarget2 = getByText('No favorite pokemon found');
+    const testTarget = getByRole('heading', { name: /Favorite pokémons/i, level: 2 });
+    const testTarget2 = getByText(/No favorite pokemon found/i);
     expect(testTarget).toBeInTheDocument();
     expect(testTarget2).toBeInTheDocument();
   });
