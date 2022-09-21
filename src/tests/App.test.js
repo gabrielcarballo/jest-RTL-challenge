@@ -60,7 +60,6 @@ describe('Requisite 1 Routing tests', () => {
     act(() => {
       history.push('/test');
     });
-
     expect(screen.getByRole('heading', { level: 2, name: /page requested not found/i }))
       .toBeInTheDocument();
   });
