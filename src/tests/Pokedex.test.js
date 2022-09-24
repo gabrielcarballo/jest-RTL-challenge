@@ -27,22 +27,31 @@ describe('Requisite 5 testing <Pokedex> Component', () => {
     });
     expect(getByText('Pikachu')).toBeInTheDocument();
   });
-  test('', () => {
-    const { queryAllByTestId, queryAllByRole } = renderPokedex();
-    const arrayButtons = queryAllByTestId('pokemon-type-button');
-    /* const buttonsTarget = [];
-    arrayButtons.forEach((e) => {
-      buttonsTarget.push(e.textContent);
-    });
-    const arrayButtonsText = queryAllByRole('button');
-    const textTarget = [];
-    arrayButtonsText.forEach((e) => {
-      textTarget.push(e.textContent);
-    });
- */
-    arrayButtons.forEach((e) => {
+  test('If all buttons are rendered correctly with correct text', () => {
+    const { getAllByTestId } = renderPokedex();
+    const arrayButtons = getAllByTestId('pokemon-type-button');
+    const textTypes = [
+      'Electric',
+      'Fire',
+      'Bug',
+      'Poison',
+      'Psychic',
+      'Normal',
+      'Dragon',
+    ];
+    arrayButtons.forEach((e, index) => {
       expect(e).toBeInTheDocument();
-     /*  expect([textTarget].some((a) => a === buttonsTarget)).toBeTruthy(); */
+      expect(e).toHaveTextContent(textTypes[index]);
     });
+  });
+
+  test('If page has a reset filter button named "All"', () => {
+    const { getByRole, getByText } = renderPokedex();
+    expect(getByText('Pikachu')).toBeInTheDocument();
+    const allButton = getByRole('button', { name: /all/i });
+    expect(allButton).toBeInTheDocument();
+    expect(allButton).toHaveTextContent('All');
+    userEvent.click(allButton);
+    expect(getByText('Pikachu')).toBeInTheDocument();
   });
 });
