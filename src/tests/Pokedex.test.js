@@ -1,7 +1,7 @@
 import React from 'react';
 import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../renderWithRouter';
-import Pokedex from '../pages/Pokedex';
+
 import App from '../App';
 
 const renderPokedex = () => renderWithRouter(<App />);
